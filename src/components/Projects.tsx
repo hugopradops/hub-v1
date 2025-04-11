@@ -39,7 +39,7 @@ const projects: Project[] = [
     description: "A portfolio website showcasing my projects, skills, and experience, built with modern web technologies.",
     image: "/images/v6.png", // Updated path
     tags: ["React", "Tailwind CSS", "Vite"],
-    githubUrl: "https://github.com/hugopradops/my-website",
+    githubUrl: "https://github.com/hugopradops/hub-v1",
     liveUrl: "https://hub.hugoprado.dev/",
   },
 ];
