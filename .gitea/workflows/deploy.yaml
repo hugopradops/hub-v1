@@ -8,15 +8,22 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: gitea.9900677.xyz
-          username: ${{ github.actor }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Build Docker image
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: NPM Install and Next build 
         run: |
-          IMAGE_TAG=latest
-          IMAGE_URI=gitea.9900677.xyz/${{ gitea.repository }}:$IMAGE_TAG
-          docker build -t $IMAGE_URI . && docker push $IMAGE_URI
+          npm install && npm run build
+
+      - name: Upload to assets to webdav
+        uses: bxb100/action-upload-webdav@v1
+        with:
+          webdav_address: https://webdav.hugoprado.dev
+          webdav_username: ${{ secrets.WEBDAV_USER }}
+          webdav_password: ${{ secrets.WEBDAV_PASSWORD }}
+          webdav_upload_path: "/hub/"
+          keep_structure: true
+          files: ./dist/**
