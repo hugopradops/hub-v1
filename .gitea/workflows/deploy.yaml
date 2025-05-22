@@ -24,6 +24,6 @@ jobs:
           webdav_address: https://webdav.hugoprado.dev
           webdav_username: ${{ secrets.WEBDAV_USER }}
           webdav_password: ${{ secrets.WEBDAV_PASSWORD }}
-          webdav_upload_path: "/hub/"
+          webdav_upload_path: "/hub"
           keep_structure: true
           files: ./dist/**
